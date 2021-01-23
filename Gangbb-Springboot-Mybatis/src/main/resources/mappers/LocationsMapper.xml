@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gangbb.gangbbspringbootmybatis.model.dao.LocationsMapper">
+  <resultMap id="BaseResultMap" type="com.gangbb.gangbbspringbootmybatis.model.DO.Locations">
+    <id column="location_id" jdbcType="INTEGER" property="locationId" />
+    <result column="street_address" jdbcType="VARCHAR" property="streetAddress" />
+    <result column="postal_code" jdbcType="VARCHAR" property="postalCode" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="state_province" jdbcType="VARCHAR" property="stateProvince" />
+    <result column="country_id" jdbcType="VARCHAR" property="countryId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    location_id, street_address, postal_code, city, state_province, country_id
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from locations
+    where location_id = #{locationId,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from locations
+    where location_id = #{locationId,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.gangbb.gangbbspringbootmybatis.model.dao.LocationsMapper">
+    insert into locations (location_id, street_address, postal_code,
+      city, state_province, country_id)
+    values (#{locationId,jdbcType=INTEGER}, #{streetAddress,jdbcType=VARCHAR}, #{postalCode,jdbcType=VARCHAR},
+      #{city,jdbcType=VARCHAR}, #{stateProvince,jdbcType=VARCHAR}, #{countryId,jdbcType=VARCHAR})
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterType="com.gangbb.gangbbspringbootmybatis.model.dao.LocationsMapper">
+    update locations
+    set location_id = #{locationId,jdbcType=INTEGER},
+      street_address = #{streetAddress,jdbcType=VARCHAR},
+      postal_code = #{postalCode,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      state_province = #{stateProvince,jdbcType=VARCHAR},
+      country_id = #{countryId,jdbcType=VARCHAR}
+    where location_id = #{locationId,jdbcType=INTEGER}
+  </update>
+
+
+
+</mapper>
