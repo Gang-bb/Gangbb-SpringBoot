@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/mul-admin-api/mul-admin-api.iml" filepath="$PROJECT_DIR$/mul-admin-api/mul-admin-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mul-project.iml" filepath="$PROJECT_DIR$/mul-project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mul-utils/mul-utils.iml" filepath="$PROJECT_DIR$/mul-utils/mul-utils.iml" />
+    </modules>
+  </component>
+</project>
