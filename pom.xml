@@ -11,6 +11,7 @@
     <modules>
         <module>Gangbb-SpringBoot-Log</module>
         <module>Gangbb-SpringBoot-Config</module>
+        <module>Gangbb-SpringBoot-Devtools</module>
     </modules>
 
 
