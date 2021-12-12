@@ -14,6 +14,7 @@
         <module>Gangbb-SpringBoot-Devtools</module>
         <module>Gangbb-SpringBoot-Exception</module>
         <module>Gangbb-SpringBoot-Lombok</module>
+        <module>Gangbb-SpringBoot-Mybatis</module>
     </modules>
 
 
