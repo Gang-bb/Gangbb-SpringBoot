@@ -18,6 +18,7 @@
         <module>Gangbb-Springboot-MybatisGenerator</module>
         <module>Gangbb-SpringBoot-Swagger</module>
         <module>Gangbb-Springboot-Response</module>
+        <module>Gangbb-SpringBoot-MulModules</module>
     </modules>
 
 
