@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * Springboot logback实践启动类
  *
- * @author Liangyixiang
+ * @author Gangbb
  * @date 2021/12/11
  **/
 @SpringBootApplication
