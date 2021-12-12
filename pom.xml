@@ -16,6 +16,7 @@
         <module>Gangbb-SpringBoot-Lombok</module>
         <module>Gangbb-SpringBoot-Mybatis</module>
         <module>Gangbb-Springboot-MybatisGenerator</module>
+        <module>Gangbb-SpringBoot-Swagger</module>
     </modules>
 
 
