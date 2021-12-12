@@ -12,6 +12,7 @@
         <module>Gangbb-SpringBoot-Log</module>
         <module>Gangbb-SpringBoot-Config</module>
         <module>Gangbb-SpringBoot-Devtools</module>
+        <module>Gangbb-SpringBoot-Exception</module>
     </modules>
 
 
