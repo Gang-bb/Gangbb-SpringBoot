@@ -10,6 +10,7 @@
     <version>1.0.0</version>
     <modules>
         <module>Gangbb-SpringBoot-Log</module>
+        <module>Gangbb-SpringBoot-Config</module>
     </modules>
 
 
