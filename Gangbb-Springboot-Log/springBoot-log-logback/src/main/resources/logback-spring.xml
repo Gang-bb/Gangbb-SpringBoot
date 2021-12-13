@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 一、根节点<configuration>，包含下面三个属性-->
+<!--1.scan: 当此属性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true-->
+<!--2.scanPeriod: 设置监测配置文件是否有修改的时间间隔，如果没有给出时间单位，默认单位是毫秒。当scan为true时，此属性生效。默认的时间间隔为1分钟。-->
+<!--3.debug: 当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。-->
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <!-- 日志存放路径 -->
+	<property name="log.path" value="./logback/logs" />
+    <!-- 控制台输出格式 -->
+	<property name="console.log.pattern" value="%red(%d{yyyy-MM-dd HH:mm:ss.SSS}) %green([%thread]) %highlight(%-5level) %boldMagenta([%logger{60}]) - %cyan(%msg%n)" />
+    <!-- 文件输出格式 -->
+    <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level [%logger{36}] - %msg%n"/>
+
+	<!-- 控制台输出 -->
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>${console.log.pattern}</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 系统 INFO 日志文件输出 -->
+	<appender name="file_info" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	    <file>${log.path}/sys-info.log</file>
+        <!-- 循环政策：基于时间创建日志文件 -->
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 日志文件名格式 -->
+			<fileNamePattern>${log.path}/sys-info.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<!-- 日志最大的历史 60天 -->
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+            <charset>utf-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <!-- 过滤的级别 -->
+            <level>INFO</level>
+            <!--DENY：表示不用看后面的过滤器了，这里就给拒绝了，不作记录。-->
+            <!--NEUTRAL：表示需不需要记录，还需要看后面的过滤器。若所有过滤器返回的全部都是NEUTRAL，那么需要记录日志。-->
+            <!--ACCEPT：表示不用看后面的过滤器了，这里就给直接同意了，需要记录。-->
+            <!-- 匹配时的操作：接收（记录） -->
+            <onMatch>ACCEPT</onMatch>
+            <!-- 不匹配时的操作：拒绝（不记录） -->
+            <onMismatch>DENY</onMismatch>
+        </filter>
+	</appender>
+
+    <!-- 系统 error 日志文件输出 -->
+	<appender name="file_error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	    <file>${log.path}/sys-error.log</file>
+        <!-- 循环政策：基于时间创建日志文件 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 日志文件名格式 -->
+            <fileNamePattern>${log.path}/sys-error.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<!-- 日志最大的历史 60天 -->
+			<maxHistory>60</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+            <charset>utf-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <!-- 过滤的级别 -->
+            <level>ERROR</level>
+			<!-- 匹配时的操作：接收（记录） -->
+            <onMatch>ACCEPT</onMatch>
+			<!-- 不匹配时的操作：拒绝（不记录） -->
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+	
+    <!--*********设置一些包的打印级别,过滤一些无用信息*********-->
+	<!-- Spring日志级别控制  -->
+	<logger name="org.springframework" level="info" />
+    <logger name="_org.springframework" level="info" />
+
+    <!--  默认环境日志级别  -->
+    <springProfile name="default">
+        <!--日志文件打印日志级别-->
+        <root level="debug">
+            <appender-ref ref="file_info" />
+            <appender-ref ref="file_error" />
+            <appender-ref ref="console" />
+        </root>
+    </springProfile>
+
+    <!--  开发环境日志级别  -->
+    <springProfile name="dev">
+        <!--日志文件打印日志级别-->
+        <root level="debug">
+            <appender-ref ref="file_info" />
+            <appender-ref ref="file_error" />
+            <appender-ref ref="console" />
+        </root>
+    </springProfile>
+
+    <!--  测试环境日志级别  -->
+    <springProfile name="test">
+        <!--日志文件打印日志级别-->
+        <root level="info">
+            <appender-ref ref="file_info" />
+            <appender-ref ref="file_error" />
+            <appender-ref ref="console" />
+        </root>
+    </springProfile>
+
+
+    <!--  线上环境日志级别  -->
+    <springProfile name="prod">
+        <!--日志文件打印日志级别-->
+        <root level="info">
+            <appender-ref ref="file_info" />
+            <appender-ref ref="file_error" />
+            <appender-ref ref="console" />
+        </root>
+    </springProfile>
+
+
+</configuration> 

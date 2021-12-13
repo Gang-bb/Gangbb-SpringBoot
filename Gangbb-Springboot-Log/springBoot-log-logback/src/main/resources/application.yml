@@ -1,0 +1,8 @@
+## =============Spring配置==============
+#spring:
+#  # 应用名称
+#  application:
+#    name: test-logback
+#  # 激活使用的配置文件
+#  profiles:
+#    active: dev
